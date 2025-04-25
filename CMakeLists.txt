@@ -35,18 +35,29 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(Ohmimetro Ohmimetro.c )
+add_executable(Ohmimetro 
+        Ohmimetro.c 
+        lib/ssd1306.c
+        )
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE 
+        PICO_PRINTF_SUPPORT_FLOAT=1 
+        PICO_STDIO_ENABLE_PRINTF=1
+)
 
 pico_set_program_name(Ohmimetro "Ohmimetro")
 pico_set_program_version(Ohmimetro "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
 pico_enable_stdio_uart(Ohmimetro 0)
-pico_enable_stdio_usb(Ohmimetro 0)
+pico_enable_stdio_usb(Ohmimetro 1)
 
 # Add the standard library to the build
 target_link_libraries(Ohmimetro
-        pico_stdlib)
+    pico_stdlib 
+    hardware_i2c
+    hardware_adc
+)
 
 # Add the standard include files to the build
 target_include_directories(Ohmimetro PRIVATE
