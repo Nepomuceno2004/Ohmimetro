@@ -31,7 +31,7 @@ void gpio_irq_handler(uint gpio, uint32_t events)
     reset_usb_boot(0, 0);
 }
 
-void corResistor(char r, char cor[])
+void corResistor(char r, char cor[], int linha)
 {
 
     switch (r)
@@ -178,8 +178,8 @@ void arredondarResistor(float valor)
 
     sprintf(str_arredondado, "%1.0f", arredondado);
 
-    corResistor(str_arredondado[0], cor1);
-    corResistor(str_arredondado[1], cor2);
+    corResistor(str_arredondado[0], cor1,1);
+    corResistor(str_arredondado[1], cor2,2);
 
     long int int_multiplicador = (long int)(multiplicador * 10);
 
