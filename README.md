@@ -21,7 +21,7 @@ Projeto desenvolvido para medir resistores e exibir suas cores padrão utilizand
   - Pressione o botão B para entrar em modo de atualização (BOOTSEL), se necessário.
 - Foto do circuito:
 
- ![Circuito](https://imgur.com/a/rfyAgN2)
+ ![Circuito](https://drive.google.com/file/d/1RBDT-bk54MhdPwHaAHon00efsEmRs-T7/view?usp=sharing)
 
 ### Componentes Utilizados
 - Placa: BitDogLab (RP2040)
