@@ -39,6 +39,7 @@
     "files.associations": {
         "bootrom.h": "c",
         "adc.h": "c",
-        "ssd1306.h": "c"
+        "ssd1306.h": "c",
+        "stdlib.h": "c"
     }
 }
