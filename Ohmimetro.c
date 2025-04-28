@@ -57,6 +57,14 @@ bool linha3[NUM_PIXELS] = {
     0, 0, 0, 0, 0,
     0, 0, 0, 0, 0,
 };
+
+bool linha4[NUM_PIXELS] = {
+    0, 0, 0, 0, 0,
+    1, 1, 1, 1, 1,
+    0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0,
+};
 // Trecho para modo BOOTSEL com botão B
 void gpio_irq_handler(uint gpio, uint32_t events)
 {
@@ -89,23 +97,6 @@ void corResistor(char r, char cor[], int faixa)
     // Define a cor com base nos parâmetros fornecidos
     uint32_t color = urgb_u32(0, 0, 0);
     bool linha_aux[NUM_PIXELS] = {0};
-
-    switch (faixa)
-    {
-    case 1:
-    {
-        memcpy(linha_aux, linha1, sizeof(linha1));
-        break;
-    }
-    case 2:
-    {
-        memcpy(linha_aux, linha2, sizeof(linha2));
-        break;
-    }
-
-    default:
-        break;
-    }
 
     switch (r)
     {
@@ -167,6 +158,22 @@ void corResistor(char r, char cor[], int faixa)
     {
         sprintf(cor, "Branco");
         color = urgb_u32(5, 5, 5);
+        break;
+    }
+    default:
+        break;
+    }
+
+    switch (faixa)
+    {
+    case 1:
+    {
+        memcpy(linha_aux, linha1, sizeof(linha1));
+        break;
+    }
+    case 2:
+    {
+        memcpy(linha_aux, linha2, sizeof(linha2));
         break;
     }
     default:
@@ -244,6 +251,10 @@ void corMultiplicador(int m, char cor[])
        {
            pixels[i] = color;
        }
+       if (linha4[i])
+       {
+        pixels[i] = urgb_u32(5, 3, 0);
+       }
    }
 
 }
@@ -285,13 +296,13 @@ void arredondarResistor(float valor)
     }
 
     // Voltar para a escala original
-    float arredondado = melhor * multiplicador;
-    char str_arredondado[5];
+    float resistencia_Final = melhor * multiplicador;
+    char str_resistencia_Final[5];
 
-    sprintf(str_arredondado, "%1.0f", arredondado);
+    sprintf(str_resistencia_Final, "%1.0f", resistencia_Final);
 
-    corResistor(str_arredondado[0], cor1, 1);
-    corResistor(str_arredondado[1], cor2, 2);
+    corResistor(str_resistencia_Final[0], cor1, 1);
+    corResistor(str_resistencia_Final[1], cor2, 2);
 
     
     long int int_multiplicador = (long int)(multiplicador * 10);
