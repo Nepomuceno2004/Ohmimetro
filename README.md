@@ -27,8 +27,7 @@ Projeto desenvolvido para medir resistores e exibir suas cores padrão utilizand
 - Placa: BitDogLab (RP2040)
 - Display OLED: SSD1306, comunicação via I2C (SDA - GPIO14, SCL - GPIO15)
 - Matriz de LEDs: WS2812, conectada no GPIO7
-- Botões:
-  - Botão A (GPIO5) - usado para a medição contínua.
+- Botão:
   - Botão B (GPIO6) - usado para reiniciar o sistema em modo BOOTSEL.
 - Resistor conhecido: 10 kΩ para o divisor de tensão.
 - Fontes e Bibliotecas:
