@@ -15,8 +15,7 @@
 #define I2C_SCL 15
 #define endereco 0x3C
 #define ADC_PIN 28 // GPIO para o ohmimetro
-#define Botao_A 5  // GPIO para botão A
-#define Botao_B 6
+#define Botao_B 6 // gpio para o botão B
 
 // pinos da matriz de led
 #define IS_RGBW false
@@ -324,10 +323,6 @@ int main()
     gpio_pull_up(Botao_B);
     gpio_set_irq_enabled_with_callback(Botao_B, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler);
     // Aqui termina o trecho para modo BOOTSEL com botão B
-
-    gpio_init(Botao_A);
-    gpio_set_dir(Botao_A, GPIO_IN);
-    gpio_pull_up(Botao_A);
 
     // inicialização da matriz de led
     PIO pio = pio0;
