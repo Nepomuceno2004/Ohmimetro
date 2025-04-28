@@ -52,9 +52,15 @@ pico_set_program_version(Ohmimetro "0.1")
 pico_enable_stdio_uart(Ohmimetro 0)
 pico_enable_stdio_usb(Ohmimetro 1)
 
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/generated)
+pico_generate_pio_header(Ohmimetro 
+    ${CMAKE_CURRENT_LIST_DIR}/lib/ws2812.pio OUTPUT_DIR 
+        ${CMAKE_CURRENT_LIST_DIR}/generated)
+
 # Add the standard library to the build
 target_link_libraries(Ohmimetro
     pico_stdlib 
+    hardware_pio
     hardware_i2c
     hardware_adc
 )
@@ -63,11 +69,6 @@ target_link_libraries(Ohmimetro
 target_include_directories(Ohmimetro PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
 )
-
-# Add any user requested libraries
-target_link_libraries(Ohmimetro 
-        
-        )
 
 pico_add_extra_outputs(Ohmimetro)
 
